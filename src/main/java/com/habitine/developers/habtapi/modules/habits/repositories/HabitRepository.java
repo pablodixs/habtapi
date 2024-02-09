@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface HabitRepository extends JpaRepository<HabitEntity, UUID> {
-    public List<HabitEntity> findAllByUserId(UUID id);
+    List<HabitEntity> findAllByUserId(UUID id);
 }

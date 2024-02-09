@@ -3,12 +3,9 @@ package com.habitine.developers.habtapi.modules.habits.entities;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,7 +33,11 @@ public class HabitProgressEntity {
 
    private Boolean wasInterrupted;
 
+   @Column(name = "habitId", insertable=false, updatable=false)
+   private UUID habitId;
+
    @ManyToOne
-   @JoinColumn(name = "habit_id")
+   @JoinColumn(name = "habitId")
+   @JsonManagedReference
    private HabitEntity habit;
 }

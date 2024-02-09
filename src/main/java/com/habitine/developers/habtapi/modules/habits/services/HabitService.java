@@ -6,7 +6,6 @@ import com.habitine.developers.habtapi.modules.habits.repositories.HabitReposito
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,6 +26,7 @@ public class HabitService {
                 .duration(habitDTO.getDuration())
                 .tags(habitDTO.getTags())
                 .daysOfWeek(habitDTO.getDaysOfWeek())
+                .userId(habitDTO.getUserId())
                 .user(habitDTO.getUser())
                 .build();
 

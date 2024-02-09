@@ -41,7 +41,7 @@ public class UserService {
       Optional<UserEntity> user = this.userRepository.findById(id);
 
       if(user.isEmpty()) {
-         throw new Exception("User not found.");
+         throw new Exception("User ID not found.");
       }
 
       return user.get();
