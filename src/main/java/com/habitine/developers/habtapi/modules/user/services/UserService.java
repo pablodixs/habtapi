@@ -19,7 +19,7 @@ public class UserService {
    private UserRepository userRepository;
 
    public UserEntity createNewUser(UserDTO userDTO) {
-      var userAlreadyExists = this.verifyIfUserAlreadyExists(userDTO);
+      var userAlreadyExists = verifyIfUserAlreadyExists(userDTO);
 
       if (userAlreadyExists) {
          throw new UserAlreadyExistsException();
@@ -32,26 +32,22 @@ public class UserService {
             .passwordHash(userDTO.getPassword())
             .build();
 
-      return this.userRepository.save(user);
+      return userRepository.save(user);
    }
 
    public Boolean verifyIfUserAlreadyExists(UserDTO userDTO) {
-      var result = this.userRepository.findByEmailOrUsername(userDTO.getEmail(), userDTO.getUsername());
+      var result = userRepository.findByEmailOrUsername(userDTO.getEmail(), userDTO.getUsername());
 
       return !result.isEmpty();
    }
 
    public List<UserEntity> findAllUsers() {
-      return this.userRepository.findAll();
+      return userRepository.findAll();
    }
 
    public UserEntity findUserById(UUID id) throws UserNotFoundException {
-      Optional<UserEntity> user = this.userRepository.findById(id);
+      Optional<UserEntity> user = userRepository.findById(id);
 
-      if (user.isEmpty()) {
-         throw new UserNotFoundException();
-      }
-
-      return user.get();
+      return user.orElseThrow(() -> new UserNotFoundException());
    }
 }
