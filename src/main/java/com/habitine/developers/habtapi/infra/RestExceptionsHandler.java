@@ -12,15 +12,21 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class RestExceptionsHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
-    private ResponseEntity<RestExceptionBody> userNotFoundHandler(UserNotFoundException exception) {
-        RestExceptionBody body = new RestExceptionBody(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), exception.getMessage());
+    private ResponseEntity<RestExceptionResponseBody> userNotFoundHandler(UserNotFoundException exception) {
+        RestExceptionResponseBody body = new RestExceptionResponseBody(
+                HttpStatus.NOT_FOUND,
+                HttpStatus.NOT_FOUND.value(),
+                exception.getMessage());
 
         return ResponseEntity.status(body.getStatus()).body(body);
     }
 
     @ExceptionHandler(UserAlreadyExistsException.class)
-    private ResponseEntity<RestExceptionBody> userAlreadyExistsHandler(UserAlreadyExistsException exception) {
-        RestExceptionBody body = new RestExceptionBody(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), exception.getMessage());
+    private ResponseEntity<RestExceptionResponseBody> userAlreadyExistsHandler(UserAlreadyExistsException exception) {
+        RestExceptionResponseBody body = new RestExceptionResponseBody(
+                HttpStatus.BAD_REQUEST,
+                HttpStatus.BAD_REQUEST.value(),
+                exception.getMessage());
 
         return ResponseEntity.status(body.getStatus()).body(body);
     }

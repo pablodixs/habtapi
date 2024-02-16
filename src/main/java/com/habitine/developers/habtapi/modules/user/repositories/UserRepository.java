@@ -9,4 +9,8 @@ import com.habitine.developers.habtapi.modules.user.entities.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     List<UserEntity> findByEmailOrUsername(String email, String username);
+
+    UserEntity findByEmail(String email);
+
+    UserEntity findByUsername(String username);
 }

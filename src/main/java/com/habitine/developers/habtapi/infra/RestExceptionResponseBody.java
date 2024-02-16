@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatusCode;
 @AllArgsConstructor
 @Setter
 @Getter
-public class RestExceptionBody {
+public class RestExceptionResponseBody {
     private HttpStatusCode title;
     private int status;
     private String message;

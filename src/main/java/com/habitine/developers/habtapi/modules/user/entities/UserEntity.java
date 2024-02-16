@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.jetbrains.annotations.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,11 +34,14 @@ public class UserEntity {
    private UUID id;
 
    @Column(unique = true)
+   @NotNull
    private String username;
 
    @Column(unique = true)
+   @NotNull
    private String email;
 
+   @NotNull
    private String displayName;
 
    @JsonIgnore

@@ -18,19 +18,19 @@ public class UserService {
    @Autowired
    private UserRepository userRepository;
 
-   public UserEntity createNewUser(UserDTO userDTO) throws UserAlreadyExistsException {
+   public UserEntity createNewUser(UserDTO userDTO) {
       var userAlreadyExists = this.verifyIfUserAlreadyExists(userDTO);
 
-      if(userAlreadyExists) {
+      if (userAlreadyExists) {
          throw new UserAlreadyExistsException();
       }
 
       UserEntity user = UserEntity.builder()
-              .displayName(userDTO.getDisplayName())
-              .email(userDTO.getEmail())
-              .username(userDTO.getUsername())
-              .passwordHash(userDTO.getPassword())
-              .build();
+            .displayName(userDTO.getDisplayName())
+            .email(userDTO.getEmail())
+            .username(userDTO.getUsername())
+            .passwordHash(userDTO.getPassword())
+            .build();
 
       return this.userRepository.save(user);
    }
@@ -48,7 +48,7 @@ public class UserService {
    public UserEntity findUserById(UUID id) throws UserNotFoundException {
       Optional<UserEntity> user = this.userRepository.findById(id);
 
-      if(user.isEmpty()) {
+      if (user.isEmpty()) {
          throw new UserNotFoundException();
       }
 

@@ -19,19 +19,19 @@ public class UserController {
 
    @PostMapping("/user/create")
    public ResponseEntity<Object> createUser(@RequestBody UserDTO userDTO) {
-       var user = this.userService.createNewUser(userDTO);
+      var user = this.userService.createNewUser(userDTO);
 
-       return ResponseEntity.status(HttpStatus.CREATED).body(user);
+      return ResponseEntity.status(HttpStatus.CREATED).body(user);
    }
 
    @GetMapping("/users")
    public ResponseEntity<Object> listUsers() {
-       return ResponseEntity.ok().body(userService.findAllUsers());
+      return ResponseEntity.ok().body(userService.findAllUsers());
    }
 
    @GetMapping("/user")
    public ResponseEntity<Object> listUserById(@RequestParam("id") UUID id) {
-       var user = this.userService.findUserById(id);
-       return ResponseEntity.ok().body(user);
+      var user = this.userService.findUserById(id);
+      return ResponseEntity.ok().body(user);
    }
 }
