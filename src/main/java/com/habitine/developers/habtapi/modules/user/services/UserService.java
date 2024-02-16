@@ -1,5 +1,7 @@
 package com.habitine.developers.habtapi.modules.user.services;
 
+import com.habitine.developers.habtapi.modules.user.exceptions.UserAlreadyExistsException;
+import com.habitine.developers.habtapi.modules.user.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,13 @@ public class UserService {
    @Autowired
    private UserRepository userRepository;
 
-   public UserEntity createNewUser(UserDTO userDTO) {
+   public UserEntity createNewUser(UserDTO userDTO) throws UserAlreadyExistsException {
+      var userAlreadyExists = this.verifyIfUserAlreadyExists(userDTO);
+
+      if(userAlreadyExists) {
+         throw new UserAlreadyExistsException();
+      }
+
       UserEntity user = UserEntity.builder()
               .displayName(userDTO.getDisplayName())
               .email(userDTO.getEmail())
@@ -37,11 +45,11 @@ public class UserService {
       return this.userRepository.findAll();
    }
 
-   public UserEntity findUserById(UUID id) throws Exception {
+   public UserEntity findUserById(UUID id) throws UserNotFoundException {
       Optional<UserEntity> user = this.userRepository.findById(id);
 
       if(user.isEmpty()) {
-         throw new Exception("User ID not found.");
+         throw new UserNotFoundException();
       }
 
       return user.get();

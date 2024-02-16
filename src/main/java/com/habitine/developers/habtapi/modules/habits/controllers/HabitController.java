@@ -3,6 +3,7 @@ package com.habitine.developers.habtapi.modules.habits.controllers;
 import com.habitine.developers.habtapi.modules.habits.DTOs.HabitDTO;
 import com.habitine.developers.habtapi.modules.habits.services.HabitService;
 import com.habitine.developers.habtapi.modules.user.services.UserService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +23,7 @@ public class HabitController {
 
     @GetMapping
     public ResponseEntity<Object> listHabitsFromUserId(@RequestParam("id") UUID id) {
-        try {
-            this.userService.findUserById(id);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+        this.userService.findUserById(id);
 
         var habits = habitService.listHabitsByUserId(id);
 
@@ -34,12 +31,8 @@ public class HabitController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<Object> createHabit(@RequestBody HabitDTO habitDTO) {
-        try {
-            this.userService.findUserById(habitDTO.getUserId());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+    public ResponseEntity<Object> createHabit(@RequestBody @NotNull HabitDTO habitDTO) {
+        this.userService.findUserById(habitDTO.getUserId());
 
         var newHabit = this.habitService.createNewHabit(habitDTO);
 

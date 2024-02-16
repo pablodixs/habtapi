@@ -11,42 +11,27 @@ import com.habitine.developers.habtapi.modules.user.services.UserService;
 import java.util.UUID;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api")
 public class UserController {
+
    @Autowired
    private UserService userService;
 
    @PostMapping("/user/create")
    public ResponseEntity<Object> createUser(@RequestBody UserDTO userDTO) {
-      try {
-         var userAlreadyExists = this.userService.verifyIfUserAlreadyExists(userDTO);
+       var user = this.userService.createNewUser(userDTO);
 
-         if(userAlreadyExists) {
-            throw new Exception("User with this username or email already exists.");
-         }
-
-         var user = this.userService.createNewUser(userDTO);
-
-         return ResponseEntity.status(HttpStatus.CREATED).body(user);
-
-      } catch (Exception e) {
-         return ResponseEntity.badRequest().body(e.getMessage());
-      }
+       return ResponseEntity.status(HttpStatus.CREATED).body(user);
    }
 
    @GetMapping("/users")
    public ResponseEntity<Object> listUsers() {
-      return ResponseEntity.ok().body(this.userService.findAllUsers());
+       return ResponseEntity.ok().body(userService.findAllUsers());
    }
 
    @GetMapping("/user")
    public ResponseEntity<Object> listUserById(@RequestParam("id") UUID id) {
-      try {
-         var user = this.userService.findUserById(id);
-
-         return ResponseEntity.ok().body(user);
-      } catch (Exception e) {
-         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-      }
+       var user = this.userService.findUserById(id);
+       return ResponseEntity.ok().body(user);
    }
 }
