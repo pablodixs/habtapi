@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.habitine.developers.habtapi.modules.user.entities.UserEntity;
 
 import lombok.AllArgsConstructor;
@@ -44,7 +43,7 @@ public class HabitEntity {
    @OneToMany(mappedBy = "habit")
    private List<HabitProgressEntity> historic;
 
-   @Column(name = "userId", insertable=false, updatable=false)
+   @Column(name = "userId", insertable = false, updatable = false)
    private UUID userId;
 
    @ManyToOne
