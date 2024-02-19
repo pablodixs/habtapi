@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestExceptionsHandler extends ResponseEntityExceptionHandler {
 
-    // @ExceptionHandler(MethodArgumentNotValidException.class)
+    // @Override
     // protected ResponseEntity<RestExceptionResponseBody>
     // handleMethodArgumentNotValid(
     // MethodArgumentNotValidException exception,
