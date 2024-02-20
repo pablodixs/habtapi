@@ -2,7 +2,6 @@ package com.habitine.developers.habtapi.modules.habits.controllers;
 
 import com.habitine.developers.habtapi.modules.habits.DTOs.HabitDTO;
 import com.habitine.developers.habtapi.modules.habits.services.HabitService;
-import com.habitine.developers.habtapi.modules.user.exceptions.InvalidUserIdException;
 import com.habitine.developers.habtapi.modules.user.services.UserService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;

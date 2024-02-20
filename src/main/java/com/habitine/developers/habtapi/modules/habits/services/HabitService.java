@@ -1,11 +1,11 @@
 package com.habitine.developers.habtapi.modules.habits.services;
 
-import com.habitine.developers.habtapi.modules.habits.DTOs.HabitDTO;
 import com.habitine.developers.habtapi.modules.habits.entities.HabitEntity;
 import com.habitine.developers.habtapi.modules.habits.exceptions.MissingUserException;
-import com.habitine.developers.habtapi.modules.habits.repositories.HabitRepository;
 import com.habitine.developers.habtapi.modules.user.exceptions.UserNotFoundException;
 import com.habitine.developers.habtapi.modules.user.repositories.UserRepository;
+import com.habitine.developers.habtapi.modules.habits.DTOs.HabitDTO;
+import com.habitine.developers.habtapi.modules.habits.repositories.HabitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

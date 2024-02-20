@@ -1,12 +1,12 @@
 package com.habitine.developers.habtapi.modules.user.controllers;
 
+import com.habitine.developers.habtapi.modules.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.habitine.developers.habtapi.modules.user.DTOs.UserDTO;
-import com.habitine.developers.habtapi.modules.user.services.UserService;
 
 import jakarta.validation.Valid;
 

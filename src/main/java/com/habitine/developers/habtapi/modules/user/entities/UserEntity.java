@@ -4,13 +4,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import com.habitine.developers.habtapi.modules.habits.entities.HabitEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.jetbrains.annotations.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.habitine.developers.habtapi.modules.habits.entities.HabitEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

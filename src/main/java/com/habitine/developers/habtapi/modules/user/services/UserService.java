@@ -2,6 +2,7 @@ package com.habitine.developers.habtapi.modules.user.services;
 
 import com.habitine.developers.habtapi.modules.user.exceptions.UserAlreadyExistsException;
 import com.habitine.developers.habtapi.modules.user.exceptions.UserNotFoundException;
+import com.habitine.developers.habtapi.modules.user.usecases.UserServiceUseCases;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class UserService {
+public class UserService implements UserServiceUseCases {
    @Autowired
    private UserRepository userRepository;
 
@@ -45,7 +46,7 @@ public class UserService {
       return userRepository.findAll();
    }
 
-   public UserEntity findUserById(UUID id) throws UserNotFoundException {
+   public UserEntity findUserById(UUID id) {
       Optional<UserEntity> user = userRepository.findById(id);
 
       return user.orElseThrow(UserNotFoundException::new);
