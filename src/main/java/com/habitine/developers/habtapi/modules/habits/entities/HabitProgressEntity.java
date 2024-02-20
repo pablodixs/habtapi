@@ -37,6 +37,5 @@ public class HabitProgressEntity {
 
    @ManyToOne
    @JoinColumn(name = "habitId")
-   @JsonManagedReference
    private HabitEntity habit;
 }

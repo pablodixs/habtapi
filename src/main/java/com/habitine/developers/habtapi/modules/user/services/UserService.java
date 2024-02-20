@@ -48,6 +48,6 @@ public class UserService {
    public UserEntity findUserById(UUID id) throws UserNotFoundException {
       Optional<UserEntity> user = userRepository.findById(id);
 
-      return user.orElseThrow(() -> new UserNotFoundException());
+      return user.orElseThrow(UserNotFoundException::new);
    }
 }

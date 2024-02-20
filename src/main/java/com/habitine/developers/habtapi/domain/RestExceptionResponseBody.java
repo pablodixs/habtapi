@@ -1,4 +1,4 @@
-package com.habitine.developers.habtapi.infra;
+package com.habitine.developers.habtapi.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,5 +1,7 @@
-package com.habitine.developers.habtapi.infra;
+package com.habitine.developers.habtapi.domain;
 
+import com.habitine.developers.habtapi.modules.habits.exceptions.MissingUserException;
+import com.habitine.developers.habtapi.modules.user.exceptions.InvalidUserIdException;
 import com.habitine.developers.habtapi.modules.user.exceptions.UserAlreadyExistsException;
 import com.habitine.developers.habtapi.modules.user.exceptions.UserNotFoundException;
 
@@ -54,6 +56,29 @@ public class RestExceptionsHandler extends ResponseEntityExceptionHandler {
         RestExceptionResponseBody body = new RestExceptionResponseBody(
                 HttpStatus.BAD_REQUEST.value(),
                 exception.getMessage());
+
+        return ResponseEntity.status(body.getStatus()).body(body);
+    }
+
+    @ResponseBody
+    @ExceptionHandler(MissingUserException.class)
+    public ResponseEntity<RestExceptionResponseWithDescription> missingUserWhenCreatingHabit(MissingUserException exception) {
+        RestExceptionResponseWithDescription body = new RestExceptionResponseWithDescription(
+                HttpStatus.BAD_REQUEST.value(),
+                exception.getMessage(),
+                exception.getDescription()
+        );
+
+        return ResponseEntity.status(body.getStatus()).body(body);
+    }
+
+    @ResponseBody
+    @ExceptionHandler(InvalidUserIdException.class)
+    public ResponseEntity<RestExceptionResponseBody> missingUserWhenCreatingHabit(InvalidUserIdException exception) {
+        RestExceptionResponseBody body = new RestExceptionResponseBody(
+                HttpStatus.BAD_REQUEST.value(),
+                exception.getMessage()
+        );
 
         return ResponseEntity.status(body.getStatus()).body(body);
     }

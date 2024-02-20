@@ -13,7 +13,7 @@ import jakarta.validation.Valid;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
    @Autowired
